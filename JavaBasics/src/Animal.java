@@ -25,7 +25,7 @@ public class Animal
 		System.out.print("Enter name: \n");
 		
 		//hasNextLine, hasNextInt, hasNextFloat, hasNextDouble, 
-		//hasNextByte (check for correct data type)
+		//hasNextByte (check for data type)
 		
 		//NextLine, NextInt, NextFloat, NextDouble, 
 		//NextByte (retrieve)
@@ -37,6 +37,8 @@ public class Animal
 		}
 		this.setAge((byte)5);
 		this.setSpeed();
+		
+		//Example of case statement below
 		switch( (int) age )
 		{
 			case 5:
@@ -49,6 +51,7 @@ public class Animal
 		}
 	}
 	
+	//Default get and set functions below
 	public String getName() {
 		return name;
 	}
@@ -110,11 +113,13 @@ public class Animal
 		}
 	}
 	
+	//Default sound for animals
 	public String makeSound()
 	{
 		return "Roar";
 	}
 	
+	//Takes in a animal and makes the correct sound
 	public static void speakAnimal(Animal randAnimal)
 	{
 		System.out.println("Animal says " + randAnimal.makeSound());

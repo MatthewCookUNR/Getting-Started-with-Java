@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 //Program creates a GUI that uses classic Caesar cipher to encode and decode messages
 public class SecretMessagesGUI extends JFrame 
@@ -16,6 +19,7 @@ public class SecretMessagesGUI extends JFrame
 	private JTextField textKey;
 	private JTextArea textIn;
 	private JTextArea textOut;
+	private JSlider slider;
 	
 	public SecretMessagesGUI() 
 	{
@@ -43,6 +47,7 @@ public class SecretMessagesGUI extends JFrame
 		
 		//Text field that allows user to input the key for the cipher
 		textKey = new JTextField();
+		textKey.setText("0");
 		textKey.setHorizontalAlignment(SwingConstants.CENTER);
 		textKey.setBounds(259, 172, 49, 20);
 		getContentPane().add(textKey);
@@ -78,6 +83,28 @@ public class SecretMessagesGUI extends JFrame
 		});
 		btnEncodedecode.setBounds(318, 171, 130, 23);
 		getContentPane().add(btnEncodedecode);
+		
+		slider = new JSlider();
+		slider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) 
+			{
+				textKey.setText("" + slider.getValue());
+				String myMessage = textIn.getText();
+				int myKey = slider.getValue();
+				String myOutput = encodeDecode(myMessage, myKey);
+				textOut.setText(myOutput);
+			}
+		});
+		slider.setPaintLabels(true);
+		slider.setMajorTickSpacing(13);
+		slider.setMinorTickSpacing(1);
+		slider.setValue(0);
+		slider.setPaintTicks(true);
+		slider.setMaximum(26);
+		slider.setMinimum(-26);
+		slider.setBackground(new Color(135, 206, 250));
+		slider.setBounds(20, 162, 200, 41);
+		getContentPane().add(slider);
 		
 	}
 

@@ -3,9 +3,9 @@ package com.example.secretmessages;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Toast;
-
-import java.sql.Time;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -25,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText keyVal;
     private SeekBar keySlider;
     private Button cipherButton;
+    private Button moveButton;
 
     //Takes in the desired message and key and encode or decodes
     //the message (symmetrical)
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         String output = "";
         String rvsedMessage = "";
         char key = (char) keyVal;
+        keySlider.setProgress(keyVal + 13);
 
         //Reverses the message to make it harder to guess
         for(int i = message.length()-1; i >= 0; i--)
@@ -103,14 +103,17 @@ public class MainActivity extends AppCompatActivity {
         keyVal = (EditText)findViewById(R.id.keyVal);
         keySlider = (SeekBar)findViewById(R.id.keySlider);
         cipherButton = (Button)findViewById(R.id.cipherButton);
+        moveButton = (Button)findViewById(R.id.moveButton);
 
-        Intent recievedIntent = getIntent();
-        String recievedText = recievedIntent.getStringExtra(Intent.EXTRA_TEXT);
-        if(recievedText != null)
+        //Handles sharing of text into the app
+        Intent receivedIntent = getIntent();
+        String receivedText = receivedIntent.getStringExtra(Intent.EXTRA_TEXT);
+        if(receivedText != null)
         {
-            inputText.setText(recievedText);
+            inputText.setText(receivedText);
         }
 
+        //Button encodes/decodes text using inputted text and key value
         cipherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +124,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Button sets the input text to the output text
+        moveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String textOut = outputText.getText().toString();
+                int key = Integer.parseInt(keyVal.getText().toString());
+                inputText.setText(textOut);
+                keySlider.setProgress(key * -1 + 13);
+            }
+        });
+
+        //SeekBar is from -13 to 13 and encodes/decodes text whenever progress changes
         keySlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -146,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Fab handles sharing text to other applications on android device such as email
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -97,7 +97,7 @@
         android:layout_marginLeft="198dp"
         android:layout_marginTop="233dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberSigned"
         android:text="13" />
 
     <Button
@@ -111,4 +111,20 @@
         android:layout_marginLeft="249dp"
         android:layout_marginTop="230dp"
         android:text="Encode/Decode" />
+
+    <Button
+        android:id="@+id/moveButton"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="133dp"
+        android:layout_marginLeft="133dp"
+        android:layout_marginTop="458dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginRight="138dp"
+        android:text="Move Up^" />
 </RelativeLayout>

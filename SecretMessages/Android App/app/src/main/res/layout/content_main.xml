@@ -23,7 +23,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:ems="10"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine|textNoSuggestions" />
 
     <TextView
         android:id="@+id/appTitle"
@@ -69,7 +69,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="241dp" />
+        android:layout_marginTop="241dp"
+        android:max="26"
+        android:progress="26" />
 
     <TextView
         android:id="@+id/keyLabel"

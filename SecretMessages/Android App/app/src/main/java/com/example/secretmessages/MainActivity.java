@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.InputFilter;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -100,12 +99,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        inputText = (EditText)findViewById(R.id.inputText);
-        outputText = (EditText)findViewById(R.id.outputText);
-        keyVal = (EditText)findViewById(R.id.keyVal);
-        keySlider = (SeekBar)findViewById(R.id.keySlider);
-        cipherButton = (Button)findViewById(R.id.cipherButton);
-        moveButton = (Button)findViewById(R.id.moveButton);
+        inputText = findViewById(R.id.inputText);
+        outputText = findViewById(R.id.outputText);
+        keyVal = findViewById(R.id.keyVal);
+        keySlider = findViewById(R.id.keySlider);
+        cipherButton = findViewById(R.id.cipherButton);
+        moveButton = findViewById(R.id.moveButton);
 
         //Handles sharing of text into the app
         Intent receivedIntent = getIntent();
@@ -118,11 +117,26 @@ public class MainActivity extends AppCompatActivity {
         //Button encodes/decodes text using inputted text and key value
         cipherButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String textIn = inputText.getText().toString();
-                int key = Integer.parseInt(keyVal.getText().toString());
-                String output = encodeDecode(textIn, key);
-                outputText.setText(output);
+            public void onClick(View v)
+            {
+                try
+                {
+                    int key = Integer.parseInt(keyVal.getText().toString());
+                    if(key < -13 || key > 13)
+                    {
+                        throw new ArithmeticException("Outside range");
+                    }
+                    String textIn = inputText.getText().toString();
+                    String output = encodeDecode(textIn, key);
+                    outputText.setText(output);
+                }
+                catch (Exception e)
+                {
+                    String defaultKey = "13";
+                    keyVal.setText(defaultKey);
+                    keySlider.setProgress(26);
+                    Toast.makeText(MainActivity.this, "Please enter a key between -13 and 13.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -130,10 +144,22 @@ public class MainActivity extends AppCompatActivity {
         moveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String textOut = outputText.getText().toString();
-                int key = Integer.parseInt(keyVal.getText().toString());
-                inputText.setText(textOut);
-                keySlider.setProgress(key * -1 + 13);
+                try
+                {
+                    String textOut = outputText.getText().toString();
+                    if(textOut.isEmpty())
+                    {
+                        throw new Exception();
+                    }
+                    int key = Integer.parseInt(keyVal.getText().toString());
+                    inputText.setText(textOut);
+                    keySlider.setProgress(key * -1 + 13);
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(MainActivity.this, "Please enter text to be encoded or decoded.", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
@@ -146,8 +172,9 @@ public class MainActivity extends AppCompatActivity {
                 int key = keySlider.getProgress() - 13;
                 String message = inputText.getText().toString();
                 String output = encodeDecode(message, key);
+                String newKey = "" + key;
                 outputText.setText(output);
-                keyVal.setText("" + key);
+                keyVal.setText(newKey);
             }
 
             @Override

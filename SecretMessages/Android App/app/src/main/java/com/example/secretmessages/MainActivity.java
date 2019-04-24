@@ -1,8 +1,10 @@
 package com.example.secretmessages;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
@@ -199,7 +201,19 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
+            AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
+            aboutDialog.setTitle("About Secret Messages");
+            aboutDialog.setMessage("Application was created by Matthew Cook for his own educational purposes");
+            aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.dismiss();
+                }
+            });
+            aboutDialog.show();
             return true;
         }
 

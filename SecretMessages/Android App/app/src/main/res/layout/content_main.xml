@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,123 +8,114 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <EditText
-        android:id="@+id/outputText"
-        android:layout_width="347dp"
-        android:layout_height="111dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="317dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:ems="10"
-        android:inputType="textMultiLine|textNoSuggestions" />
-
-    <TextView
-        android:id="@+id/appTitle"
+<RelativeLayout
+        android:id="@+id/activity_main"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="61dp"
-        android:layout_marginRight="61dp"
-        android:text="Matt's Secret Messages App"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/inputText"
-        android:layout_width="347dp"
-        android:layout_height="111dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="81dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:ems="10"
-        android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/outputText"
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:layout_below="@+id/keyVal"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="39dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:inputType="textMultiLine|textNoSuggestions" />
 
-    <SeekBar
-        android:id="@+id/keySlider"
-        android:layout_width="130dp"
-        android:layout_height="32dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="241dp"
-        android:max="26"
-        android:progress="26" />
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="33dp"
+            android:text="Matt's Secret Messages App"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/keyLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="162dp"
-        android:layout_marginLeft="162dp"
-        android:layout_marginTop="243dp"
-        android:text="Key:"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
+        <EditText
+            android:id="@+id/inputText"
+            android:layout_width="wrap_content"
+            android:layout_height="111dp"
+            android:layout_below="@+id/appTitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:inputType="textMultiLine" />
 
-    <EditText
-        android:id="@+id/keyVal"
-        android:layout_width="34dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="198dp"
-        android:layout_marginLeft="198dp"
-        android:layout_marginTop="233dp"
-        android:ems="10"
-        android:inputType="numberSigned"
-        android:text="13" />
+        <SeekBar
+            android:id="@+id/keySlider"
+            android:layout_width="130dp"
+            android:layout_height="32dp"
+            android:layout_below="@+id/inputText"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="49dp"
+            android:max="26"
+            android:progress="26" />
 
-    <Button
-        android:id="@+id/cipherButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="249dp"
-        android:layout_marginLeft="249dp"
-        android:layout_marginTop="230dp"
-        android:text="Encode/Decode" />
+        <TextView
+            android:id="@+id/keyLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="243dp"
+            android:layout_toEndOf="@+id/keySlider"
+            android:layout_toRightOf="@+id/keySlider"
+            android:text="Key:"
+            android:textAppearance="@android:style/TextAppearance.Medium" />
+
+        <EditText
+            android:id="@+id/keyVal"
+            android:layout_width="34dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="233dp"
+            android:layout_toEndOf="@+id/keyLabel"
+            android:layout_toRightOf="@+id/keyLabel"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:text="13" />
+
+        <Button
+            android:id="@+id/cipherButton"
+            android:layout_width="138dp"
+            android:layout_height="56dp"
+            android:layout_below="@+id/inputText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="36dp"
+            android:layout_toEndOf="@+id/keyVal"
+            android:layout_toRightOf="@+id/keyVal"
+            android:text="Encode/Decode" />
 
     <Button
         android:id="@+id/moveButton"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/outputText"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="133dp"
-        android:layout_marginLeft="133dp"
-        android:layout_marginTop="458dp"
-        android:layout_marginEnd="138dp"
-        android:layout_marginRight="138dp"
+        android:layout_marginStart="135dp"
+        android:layout_marginLeft="135dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="135dp"
         android:text="Move Up^" />
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
